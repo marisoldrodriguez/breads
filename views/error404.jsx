@@ -5,7 +5,7 @@ function error404 () {
     return (
       <Default>
         <h2>Oops, you've reached a page that doesn't exist!</h2>
-        <a href="/breads"><button>Go home!</button></a>
+        <button><a href="/breads">Back to index page</a></button>
         
       </Default>
     )
