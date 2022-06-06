@@ -14,17 +14,19 @@ const breadSchema = new Schema({
   },
   baker: {
     type: Schema.Types.ObjectId,
-    ref: 'Baker'   
+    ref: "Baker",
   },
 });
 
 // Helper methods (instance method)
 breadSchema.methods.getBakedBy = function () {
-  return `${this.name} was baked with love by ${this.baker.name}, who has been with us since ${this.baker.startDate.getFullYear()}`;
+  return `${this.name} was baked with love by ${
+    this.baker.name
+  }, who has been with us since ${this.baker.startDate.getFullYear()}`;
 };
 
 // Creating a Bread model
-const Bread = mongoose.model('Bread', breadSchema);
+const Bread = mongoose.model("Bread", breadSchema);
 // export
 module.exports = Bread;
 

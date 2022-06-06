@@ -20,15 +20,28 @@ baker.get('/', (req, res) => {
 })
 
 // Show
+// show 
 baker.get('/:id', (req, res) => {
     Baker.findById(req.params.id)
-    .populate('breads')
-    .then(foundBaker => {
-        res.render('bakerShow', {
-            baker: foundBaker
+        .populate({
+            path: 'breads',
+            options: { limit: 2 }
         })
-    })
+        .then(foundBaker => {
+            res.render('bakerShow', {
+                baker: foundBaker
+            })
+        })
 })
+
+
+// DELETE
+baker.delete("/:id", (req, res) => {
+    Baker.findByIdAndDelete(req.params.id).then((deletedBread) => {
+      res.status(303).redirect("/breads");
+      console.log(deletedBread);
+    });
+  });
 
 // export
 module.exports = baker                    
